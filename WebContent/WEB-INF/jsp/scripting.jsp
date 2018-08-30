@@ -172,7 +172,7 @@
 		                    show($("deleteScriptImg"));
 		                    show($("executeScriptImg"));
 		                    jQuery('#executeScriptImg').click(function() {
-		                    	executeScript();
+		                    	executeScriptImg();
 		                	});
 		                }
 		                setUserMessage("<fmt:message key="scripts.saved"/>");
