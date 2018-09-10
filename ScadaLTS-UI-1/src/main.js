@@ -5,13 +5,17 @@ import App from './App'
 import Test from './components/Test'
 import ExportImportPointHierarchy from './components/ExportImportPointHierarchy'
 import SimpleComponentSVG from './components/SimpleComponentSVG'
+import SimpleStomp from './components/SimpleStomp'
 import router from './router'
 import VJsoneditor from 'vue-jsoneditor';
 import Vuetify from 'vuetify';
+import VueStomp from "vue-stomp";
+
 
 Vue.config.productionTip = false
 Vue.use(VJsoneditor);
 Vue.use(Vuetify);
+Vue.use(VueStomp, 'http://' + window.location.hostname + ':15674/stomp');
 
 /*eslint-disable no-new */
 new Vue({
@@ -40,6 +44,7 @@ new Vue({
    el: '#app',
    components: {
      "simple-component-svg": SimpleComponentSVG,
-     "export-import-ph": ExportImportPointHierarchy
+     "export-import-ph": ExportImportPointHierarchy,
+     "simple-stomp": SimpleStomp
    }
 })
