@@ -18,11 +18,12 @@
     "axios": "^0.18.0",
     "material-design-icons-iconfont": "^3.0.3",
     "moment": "^2.22.2",
+    "sockjs-client": "^1.1.5",
     "vue": "^2.5.2",
     "vue-jsoneditor": "^1.0.13",
     "vue-router": "^3.0.1",
-    "vue-stomp": "0.0.5",
-    "vuetify": "^1.0.19"
+    "vuetify": "^1.0.19",
+    "webstomp-client": "^1.2.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

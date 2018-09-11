@@ -3,68 +3,44 @@
     <p>{{label}}</p>
     <p>{{queue}}</p>
     <p>{{invokeIdCnt}}</p>
-    <button v-on:click="connectSrv()">connect</button>
+    <button v-on:click="connectWebSocket()">connect</button>
   </div>
 </template>
 <script>
-  //import VueStomp from "vue-stomp";
+  import SockJS from "sockjs-client";
+  import Stomp from "webstomp-client";
+
   export default {
+    //pserverEndPoint 'http://' + window.location.hostname + ':15674/stomp';
     props: ['pqueue', 'plabel'],
-    data () {
+    data() {
       return {
-        invokeIdCnt: 0,
         label: this.plabel,
         queue: this.pqueue,
-        monitorIntervalTime: 100,
-        stompReconnect: true,
+        stompClient: {}
       }
     },
     methods: {
-      onConnected(frame){
-        console.log('Connected: ' + frame);
-        //...
-        this.$stompClient.subscribe('/topic/test', this.responseCallback, this.onFailed);
+      connectWebSocket() {
+        let url = 'http://localhost:15670/stomp',
+          login = 'guest', password = 'guest';
+
+        let socket = new SockJS(url, {heartbeat: false});
+
+        this.stompClient = Stomp.over(socket);
+        this.stompClient.connect(login, password, this.onConnect(), this.onError())
       },
-      onFailed(frame){
-        console.log('Failed: ' + frame);
-      //...
+      onConnect() {
+        this.stompClient.subscribe('/topic/webstomp-chat-example', this.onMessage.bind(this));
       },
-      connectSrv(){
-        var headers = {
-          "login": 'guest',
-          "passcode": 'guest',
-          // additional header
-          //...
-        };
-        this.connetWM(headers, this.onConnected, this.onFailed);
+      onMessage(msg) {
+        console.log(msg);
       },
-      getInvokeId(){
-        let hex = (this.invokeIdCnt++ ).toString(16);
-        var zero = '0000';
-        var tmp  = 4-hex.length;
-        return zero.substr(0,tmp) + hex;
+      onSend(msg) {
+        this.stompClient.send('/topic/webstomp-chat-example', msg);
       },
-      send(){
-        let destination = '/topic/test'
-        let invokeId = this.getInvokeId();
-        //...
-        let body = msgHead + invokeId + msgBody;
-        this.sendWM(destination, body, invokeId, this.responseCallback, 3000);
-      },
-      responseCallback(frame){
-        console.log("responseCallback msg=>" + frame.body);
-        let invokeId = frame.body.substr(invokeIdIndex, 4);
-        this.removeStompMonitor(invokeId);
-      },
-      disconnect(){
-        this.disconnetWM();
-      }
-    },
-    stompClient:{
-      monitorIntervalTime: 100,
-      stompReconnect: true,
-      timeout(orgCmd) {
-      //...
+      onError(err){
+        console.log(err);
       }
     }
   };

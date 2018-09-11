@@ -9,13 +9,11 @@ import SimpleStomp from './components/SimpleStomp'
 import router from './router'
 import VJsoneditor from 'vue-jsoneditor';
 import Vuetify from 'vuetify';
-import VueStomp from "vue-stomp";
 
 
 Vue.config.productionTip = false
 Vue.use(VJsoneditor);
 Vue.use(Vuetify);
-Vue.use(VueStomp, 'http://' + window.location.hostname + ':15674/stomp');
 
 /*eslint-disable no-new */
 new Vue({
