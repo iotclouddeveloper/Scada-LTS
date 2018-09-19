@@ -2,14 +2,22 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+
 import Vue from 'vue'
 import App from './App'
+import router from './router'
+
+// Import components use in old UI Scada-LTS
 import ExportImportPointHierarchy from './components/ExportImportPointHierarchy'
 import SimpleComponentSVG from './components/SimpleComponentSVG'
-import router from './router'
+
+// Import external components
 import VJsoneditor from 'vue-jsoneditor';
 import Vuetify from 'vuetify';
 import * as uiv from 'uiv';
+
+// Import components use in new UI Scada-LTS
+import Permission from './module/permission/Permission'
 
 Vue.config.productionTip = false
 Vue.use(VJsoneditor);
@@ -27,6 +35,7 @@ new Vue({
    el: '#app',
    components: {
      "simple-component-svg": SimpleComponentSVG,
-     "export-import-ph": ExportImportPointHierarchy
+     "export-import-ph": ExportImportPointHierarchy,
+     "permission": Permission
    }
 })
