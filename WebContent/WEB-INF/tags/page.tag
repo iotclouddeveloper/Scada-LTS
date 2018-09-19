@@ -183,6 +183,7 @@
           
           <c:if test="${sessionUser.admin}">
 	        <tag:menuItem href="usersProfiles.shtm" png="user_ds" key="header.usersProfiles"/>
+	        <tag:menuItem href="permission.shtm" png="user_ds" key="header.permission"/>
             <tag:menuItem href="pointHierarchySLTS" png="folder_brick" key="header.pointHierarchy"/>
             <tag:menuItem href="mailing_lists.shtm" png="book" key="header.mailingLists"/>
             <tag:menuItem href="publishers.shtm" png="transmit" key="header.publishers"/>

@@ -127,31 +127,6 @@ thead th {
 				<tr>
 					<td><img id="logo" class="logo" src="assets/logo.png"
 						alt="Logo" /></td>
-					<c:if test="${!simple}">
-						<td align="center" width="99%" id="eventsRow">
-						<span id="__header__MemoryInfo" style="visibility:visible;">
-							<input type="button" value="UserSessions" onclick="OnListUserSessions();">
-							<input type="button" value="SessonAttributes" onclick="OnListSessionsAttributes();">
-							<input type="button" value="WebsocketStats" onclick="OnListWebsocketStats();">
-
-						</span>
-						<a
-							href="events.shtm">
-<!-- 							<span id="__header__alarmLevelDiv" -->
-<!-- 								style="display: none;"> <img id="__header__alarmLevelImg" -->
-<!-- 									src="images/spacer.gif" alt="" border="0" title="" /> <span -->
-<!-- 									id="__header__alarmLevelText"></span> -->
-<!-- 							</span> -->
-		         			<span id="__header__alarmLevelDiv" style="visibility:visible;display:visible;">
-		           			<img id="__header__alarmLevelImg" src="images/spacer.gif" alt="" border="0" title=""/>
-		           			<span id="__header__alarmLevelText">text</span>
-		         			</span>
-						</a></td>
-					</c:if>
-					<c:if test="${!empty instanceDescription}">
-						<td align="right" valign="bottom" class="projectTitle"
-							style="padding: 5px; white-space: nowrap;">${instanceDescription}</td>
-					</c:if>
 				</tr>
 			</table>
 		</div>
@@ -210,15 +185,12 @@ thead th {
 								<span class="btn-separator"></span>
 							</c:if>
 
-							<li role="presentation"><a href="users.shtm"
-								data-toggle="tooltip" data-placement="top"
-								title='<fmt:message key="menu.users.tooltip"/>'><img
-									src="resources/app/menu_icons/user.png" /></a></li>
-							<c:if test="${sessionUser.admin}">
-								<li role="presentation"><a href="usersProfiles.shtm"
-									class='btn btn-xs' data-toggle="tooltip" data-placement="top"
-									title='<fmt:message key="menu.users_profiles.tooltip"/>'><img
-										src="resources/app/menu_icons/user_ds.png" /></a></li>
+							<!-- TODO my acount -->
+                            <c:if test="${sessionUser.admin}">
+                                <li role="presentation"><a href="permission.shtm"
+                            	    class='btn btn-xs' data-toggle="tooltip" data-placement="top"
+                            		title='Permission'><img
+                            		src="resources/app/menu_icons/user_ds.png" /></a></li>
 								<li role="presentation" class="active"><a
 									href="pointHierarchySLTS" class='btn btn-xs'
 									data-toggle="tooltip" data-placement="top"

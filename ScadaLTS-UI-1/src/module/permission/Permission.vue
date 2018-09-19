@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h4>Permission</h4>
+    <div class="panel panel-default">
+      <div class="panel-heading help">
+        <b>Permission</b>
+      </div>
+      <div class="menu panel-heading help">
+        
+      </div>
+    </div>
   </div>
 </template>
 <script>

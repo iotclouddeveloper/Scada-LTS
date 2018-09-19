@@ -7,11 +7,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/test',
-      name: 'Test',
-      component: Test
-    },
     { path: '/export-import-ph',
       name: 'Export import point hierarchy',
       component: ExportImportPointHierarchy
