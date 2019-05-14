@@ -1054,10 +1054,13 @@ public class ImportTask extends ProgressiveTask {
 			long time = json.getLong("timestamp");
 			String value = json.getString("value");
 			PointValueDao dao = new PointValueDao();
-			PointValueTime pointValue = new PointValueTime(
-					MangoValue.stringToValue(value, dp.getPointLocator()
-							.getDataTypeId()), time);
-			dao.savePointValue(dp.getId(), pointValue);
+			MangoValue mangoValue;
+			try {
+				mangoValue = MangoValue.stringToValue(value, dp.getPointLocator().getDataTypeId());
+			} catch (NumberFormatException e) {
+				mangoValue = MangoValue.stringToValue(dp.getParseErrorValue(), dp.getPointLocator().getDataTypeId());
+			}
+			dao.savePointValue(dp.getId(), new PointValueTime(mangoValue, time));
 		}
 
 	}
